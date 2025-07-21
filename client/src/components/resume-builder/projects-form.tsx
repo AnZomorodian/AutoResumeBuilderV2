@@ -183,21 +183,91 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
                       <Input
                         type="month"
                         value={project.endDate || ''}
-                    onChange={(e) => updateProject(project.id, 'completionDate', e.target.value)}
-                    className="mt-1"
+                        onChange={(e) => updateProject(project.id, 'endDate', e.target.value)}
+                        className="mt-1"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <Label className="text-sm font-medium text-slate-700">Project Description</Label>
+                  <Textarea
+                    rows={3}
+                    value={project.description || ''}
+                    onChange={(e) => updateProject(project.id, 'description', e.target.value)}
+                    placeholder="Built a full-stack e-commerce platform with user authentication, payment processing, and inventory management..."
+                    className="mt-1 resize-none"
                   />
                 </div>
-              </div>
 
-              <div className="mt-4">
-                <Label className="text-sm font-medium text-slate-700">Project Description</Label>
-                <Textarea
-                  rows={3}
-                  value={project.description || ''}
-                  onChange={(e) => updateProject(project.id, 'description', e.target.value)}
-                  placeholder="Built a full-stack e-commerce platform with user authentication, payment processing, and inventory management..."
-                  className="mt-1 resize-none"
-                />
+                <div className="mt-4">
+                  <Label className="text-sm font-medium text-slate-700">Technologies Used</Label>
+                  <div className="mt-2">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Input
+                        value={newTechSkill[project.id] || ''}
+                        onChange={(e) => setNewTechSkill({...newTechSkill, [project.id]: e.target.value})}
+                        placeholder="React, Node.js, MongoDB..."
+                        className="flex-1"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            addTechnology(project.id);
+                          }
+                        }}
+                      />
+                      <Button onClick={() => addTechnology(project.id)} size="sm">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                          {tech}
+                          <X 
+                            className="h-3 w-3 cursor-pointer" 
+                            onClick={() => removeTechnology(project.id, index)}
+                          />
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <Label className="text-sm font-medium text-slate-700">Key Highlights</Label>
+                  <div className="mt-2">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Input
+                        value={newHighlight[project.id] || ''}
+                        onChange={(e) => setNewHighlight({...newHighlight, [project.id]: e.target.value})}
+                        placeholder="Increased performance by 40%..."
+                        className="flex-1"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            addHighlight(project.id);
+                          }
+                        }}
+                      />
+                      <Button onClick={() => addHighlight(project.id)} size="sm">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <div className="space-y-1">
+                      {project.highlights.map((highlight, index) => (
+                        <div key={index} className="flex items-center justify-between bg-slate-50 p-2 rounded text-sm">
+                          <span>• {highlight}</span>
+                          <X 
+                            className="h-3 w-3 cursor-pointer text-slate-400 hover:text-red-500" 
+                            onClick={() => removeHighlight(project.id, index)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
