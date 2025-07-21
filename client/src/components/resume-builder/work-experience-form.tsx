@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Briefcase, Plus, Trash2, GripVertical, X } from "lucide-react";
 import { nanoid } from "nanoid";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 import type { WorkExperience } from "@shared/schema";
 
 interface WorkExperienceFormProps {
@@ -138,15 +139,18 @@ export default function WorkExperienceForm({ data, onChange }: WorkExperienceFor
                     />
                     <div className="flex items-center space-x-2">
                       <Checkbox
-                        checked={experience.current}
+                        id={`current-${experience.id}`}
+                        checked={experience.current || false}
                         onCheckedChange={(checked) => {
-                          updateExperience(experience.id, 'current', !!checked);
-                          if (checked) {
+                          const isCurrentJob = checked === true;
+                          updateExperience(experience.id, 'current', isCurrentJob);
+                          if (isCurrentJob) {
                             updateExperience(experience.id, 'endDate', '');
                           }
                         }}
                       />
-                      <Label className="text-sm text-slate-600">Current</Label>
+                      <Label htmlFor={`current-${experience.id}`} className="text-sm text-slate-600 cursor-pointer">Current</Label>
+                      <HelpTooltip content="Check this if you currently work at this company. The end date will be automatically cleared." />
                     </div>
                   </div>
                 </div>

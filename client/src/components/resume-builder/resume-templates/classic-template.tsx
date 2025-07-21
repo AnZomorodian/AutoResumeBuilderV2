@@ -33,10 +33,14 @@ export default function ClassicTemplate({ data }: ClassicTemplateProps) {
           </div>
           <div className="flex justify-center space-x-6">
             {data.personalDetails.linkedin && (
-              <span>{data.personalDetails.linkedin.replace(/^https?:\/\//, "")}</span>
+              <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
+                {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+              </a>
             )}
             {data.personalDetails.website && (
-              <span>{data.personalDetails.website.replace(/^https?:\/\//, "")}</span>
+              <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
+                {data.personalDetails.website.replace(/^https?:\/\//, "")}
+              </a>
             )}
           </div>
           {data.personalDetails.location && (
@@ -172,9 +176,14 @@ export default function ClassicTemplate({ data }: ClassicTemplateProps) {
                 {project.technologies && (
                   <p className="text-sm text-amber-700 font-semibold">{project.technologies}</p>
                 )}
-                {project.completionDate && (
+                {project.endDate && !project.current && (
                   <p className="text-sm text-gray-600 italic">
-                    Completed: {formatDate(project.completionDate)}
+                    Completed: {formatDate(project.endDate)}
+                  </p>
+                )}
+                {project.current && (
+                  <p className="text-sm text-green-600 italic font-medium">
+                    In Progress
                   </p>
                 )}
               </div>

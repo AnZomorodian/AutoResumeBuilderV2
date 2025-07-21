@@ -354,9 +354,14 @@ function generateResumeContent(data: ResumeData, template: string, formatDate: (
                 <h3>${project.name || 'Project Name'}</h3>
                 ${project.technologies ? `<p style="color: #666; font-size: 14px;">${project.technologies}</p>` : ''}
               </div>
-              ${project.completionDate ? `
+              ${project.endDate && !project.current ? `
                 <div class="date-location">
-                  <p>${formatDate(project.completionDate)}</p>
+                  <p>${formatDate(project.endDate)}</p>
+                </div>
+              ` : ''}
+              ${project.current ? `
+                <div class="date-location">
+                  <p style="color: #10b981; font-weight: 500;">In Progress</p>
                 </div>
               ` : ''}
             </div>

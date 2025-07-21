@@ -44,13 +44,17 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
           {data.personalDetails.linkedin && (
             <div className="flex items-center">
               <FaLinkedin className="h-4 w-4 mr-1" />
-              {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+              <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">
+                {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+              </a>
             </div>
           )}
           {data.personalDetails.website && (
             <div className="flex items-center">
               <Globe className="h-4 w-4 mr-1" />
-              {data.personalDetails.website.replace(/^https?:\/\//, "")}
+              <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">
+                {data.personalDetails.website.replace(/^https?:\/\//, "")}
+              </a>
             </div>
           )}
           {data.personalDetails.location && (
@@ -210,9 +214,14 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
                 <h3 className="text-lg font-semibold text-secondary">
                   {project.name || "Project Name"}
                 </h3>
-                {project.completionDate && (
+                {project.endDate && !project.current && (
                   <span className="text-sm text-slate-500">
-                    {formatDate(project.completionDate)}
+                    {formatDate(project.endDate)}
+                  </span>
+                )}
+                {project.current && (
+                  <span className="text-sm text-green-600 font-medium">
+                    In Progress
                   </span>
                 )}
               </div>

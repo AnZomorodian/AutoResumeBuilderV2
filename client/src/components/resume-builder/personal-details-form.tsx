@@ -6,6 +6,7 @@ import { User, ChevronUp, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState, useRef } from "react";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 import type { PersonalDetails } from "@shared/schema";
 
 interface PersonalDetailsFormProps {
@@ -166,9 +167,12 @@ export default function PersonalDetailsForm({ data, onChange }: PersonalDetailsF
               </div>
               
               <div>
-                <Label htmlFor="linkedin" className="text-sm font-medium text-slate-700">
-                  LinkedIn
-                </Label>
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="linkedin" className="text-sm font-medium text-slate-700">
+                    LinkedIn
+                  </Label>
+                  <HelpTooltip content="Your LinkedIn profile URL. This will be clickable in your resume." />
+                </div>
                 <Input
                   id="linkedin"
                   type="url"
@@ -180,9 +184,12 @@ export default function PersonalDetailsForm({ data, onChange }: PersonalDetailsF
               </div>
               
               <div>
-                <Label htmlFor="website" className="text-sm font-medium text-slate-700">
-                  Portfolio/Website
-                </Label>
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="website" className="text-sm font-medium text-slate-700">
+                    Portfolio/Website
+                  </Label>
+                  <HelpTooltip content="Your personal website or portfolio URL. This will be clickable in your resume." />
+                </div>
                 <Input
                   id="website"
                   type="url"

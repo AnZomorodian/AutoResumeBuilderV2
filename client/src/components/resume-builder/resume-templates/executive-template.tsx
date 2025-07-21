@@ -48,7 +48,9 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
               {data.personalDetails.linkedin && (
                 <div className="flex items-center">
                   <FaLinkedin className="h-4 w-4 mr-2" />
-                  {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                  <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-purple-200 underline">
+                    {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                  </a>
                 </div>
               )}
               {data.personalDetails.location && (
@@ -290,9 +292,14 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                   {project.description && (
                     <p className="text-sm text-gray-700 mb-2">{project.description}</p>
                   )}
-                  {project.completionDate && (
+                  {project.endDate && !project.current && (
                     <p className="text-xs text-gray-500">
-                      Completed: {formatDate(project.completionDate)}
+                      Completed: {formatDate(project.endDate)}
+                    </p>
+                  )}
+                  {project.current && (
+                    <p className="text-xs text-green-600 font-medium">
+                      In Progress
                     </p>
                   )}
                   <div className="flex gap-3 mt-2">

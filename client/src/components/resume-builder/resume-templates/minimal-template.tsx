@@ -30,10 +30,18 @@ export default function MinimalTemplate({ data }: MinimalTemplateProps) {
           {data.personalDetails.email && <div>{data.personalDetails.email}</div>}
           {data.personalDetails.phone && <div>{data.personalDetails.phone}</div>}
           {data.personalDetails.linkedin && (
-            <div>{data.personalDetails.linkedin.replace(/^https?:\/\//, "")}</div>
+            <div>
+              <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
+                {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
           )}
           {data.personalDetails.website && (
-            <div>{data.personalDetails.website.replace(/^https?:\/\//, "")}</div>
+            <div>
+              <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
+                {data.personalDetails.website.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
           )}
           {data.personalDetails.location && <div>{data.personalDetails.location}</div>}
         </div>
@@ -163,9 +171,14 @@ export default function MinimalTemplate({ data }: MinimalTemplateProps) {
                 <h3 className="font-medium text-gray-900">
                   {project.name || "Project Name"}
                 </h3>
-                {project.completionDate && (
+                {project.endDate && !project.current && (
                   <span className="text-xs text-gray-500">
-                    {formatDate(project.completionDate)}
+                    {formatDate(project.endDate)}
+                  </span>
+                )}
+                {project.current && (
+                  <span className="text-xs text-green-600 font-medium">
+                    In Progress
                   </span>
                 )}
               </div>

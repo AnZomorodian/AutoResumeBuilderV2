@@ -6,12 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Settings, Plus, X, Trash2 } from "lucide-react";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 import type { Skills } from "@shared/schema";
 
 interface SkillsFormProps {
   data: Skills;
   onChange: (data: Skills) => void;
 }
+
+// World languages list
+const WORLD_LANGUAGES = [
+  "English", "Spanish", "French", "German", "Italian", "Portuguese", "Russian", "Chinese (Mandarin)", "Chinese (Cantonese)", "Japanese", "Korean", "Arabic", "Hebrew", "Hindi", "Bengali", "Punjabi", "Urdu", "Persian", "Turkish", "Greek", "Dutch", "Swedish", "Norwegian", "Danish", "Finnish", "Polish", "Czech", "Hungarian", "Romanian", "Bulgarian", "Serbian", "Croatian", "Slovak", "Slovenian", "Estonian", "Latvian", "Lithuanian", "Ukrainian", "Belarusian", "Albanian", "Macedonian", "Bosnian", "Montenegrin", "Icelandic", "Irish", "Welsh", "Scottish Gaelic", "Basque", "Catalan", "Galician", "Maltese", "Thai", "Vietnamese", "Indonesian", "Malay", "Filipino", "Tagalog", "Swahili", "Amharic", "Zulu", "Xhosa", "Afrikaans", "Yoruba", "Igbo", "Hausa"
+];
 
 export default function SkillsForm({ data, onChange }: SkillsFormProps) {
   const [newTechnicalSkill, setNewTechnicalSkill] = useState("");
@@ -177,7 +183,10 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
 
           {/* Languages */}
           <div>
-            <Label className="text-sm font-medium text-slate-700 mb-3 block">Languages</Label>
+            <div className="flex items-center space-x-2 mb-3">
+              <Label className="text-sm font-medium text-slate-700">Languages</Label>
+              <HelpTooltip content="Select languages from our comprehensive list of world languages and set your proficiency level." />
+            </div>
             <div className="space-y-3 mb-3">
               {(data.languages || []).map((lang, index) => (
                 <div key={index} className="flex items-center space-x-3">
@@ -214,13 +223,21 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
             </div>
             
             <div className="flex items-center space-x-3">
-              <Input
+              <Select
                 value={newLanguage}
-                onChange={(e) => setNewLanguage(e.target.value)}
-                onKeyPress={(e) => handleKeyPress(e, addLanguage)}
-                placeholder="Add language"
-                className="flex-1"
-              />
+                onValueChange={(value) => setNewLanguage(value)}
+              >
+                <SelectTrigger className="flex-1">
+                  <SelectValue placeholder="Select language" />
+                </SelectTrigger>
+                <SelectContent>
+                  {WORLD_LANGUAGES.map((lang) => (
+                    <SelectItem key={lang} value={lang}>
+                      {lang}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Select
                 value={newLanguageProficiency}
                 onValueChange={(value: "Native" | "Fluent" | "Intermediate" | "Basic") => setNewLanguageProficiency(value)}

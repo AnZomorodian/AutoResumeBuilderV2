@@ -52,13 +52,17 @@ export default function CreativeTemplate({ data }: CreativeTemplateProps) {
                 {data.personalDetails.linkedin && (
                   <div className="flex items-center">
                     <FaLinkedin className="h-4 w-4 mr-2" />
-                    {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                    <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
+                      {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                    </a>
                   </div>
                 )}
                 {data.personalDetails.website && (
                   <div className="flex items-center">
                     <Globe className="h-4 w-4 mr-2" />
-                    {data.personalDetails.website.replace(/^https?:\/\//, "")}
+                    <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
+                      {data.personalDetails.website.replace(/^https?:\/\//, "")}
+                    </a>
                   </div>
                 )}
               </div>
@@ -161,16 +165,24 @@ export default function CreativeTemplate({ data }: CreativeTemplateProps) {
                       <h3 className="text-lg font-bold text-gray-900">
                         {project.name || "Project Name"}
                       </h3>
-                      {project.completionDate && (
+                      {project.endDate && !project.current && (
                         <span className="text-sm text-gray-500 bg-emerald-50 px-3 py-1 rounded-full">
-                          {formatDate(project.completionDate)}
+                          {formatDate(project.endDate)}
+                        </span>
+                      )}
+                      {project.current && (
+                        <span className="text-sm text-green-600 bg-green-50 px-3 py-1 rounded-full font-medium">
+                          In Progress
                         </span>
                       )}
                     </div>
                     {project.technologies && (
                       <div className="mb-3">
                         <div className="flex flex-wrap gap-2">
-                          {project.technologies.split(',').map((tech, index) => (
+                          {(typeof project.technologies === 'string' 
+                            ? project.technologies.split(',')
+                            : project.technologies || []
+                          ).map((tech: string, index: number) => (
                             <span key={index} className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md text-xs font-medium">
                               {tech.trim()}
                             </span>

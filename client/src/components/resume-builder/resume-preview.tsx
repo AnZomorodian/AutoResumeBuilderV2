@@ -1,8 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Expand, Minimize, Eye, Clock } from "lucide-react";
+import { Expand, Minimize, Eye, Clock, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 import ModernTemplate from "./resume-templates/modern-template";
 import MinimalTemplate from "./resume-templates/minimal-template";
 import ClassicTemplate from "./resume-templates/classic-template";
@@ -69,6 +70,12 @@ export default function ResumePreview({ data, template, lastSaved, autoSaveEnabl
             </Badge>
           </div>
           <div className="flex items-center space-x-2">
+            <Link href="/">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </Link>
             <Button
               onClick={() => setIsFullscreen(!isFullscreen)}
               variant="ghost"
