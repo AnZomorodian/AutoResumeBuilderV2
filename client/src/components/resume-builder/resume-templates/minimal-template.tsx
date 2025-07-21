@@ -67,6 +67,21 @@ export default function MinimalTemplate({ data }: MinimalTemplateProps) {
             </div>
           )}
           {data.personalDetails.location && <div>{data.personalDetails.location}</div>}
+          
+          {/* Additional Personal Details */}
+          {(data.personalDetails.age || data.personalDetails.gender || data.personalDetails.nationality) && (
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400 mt-3 pt-3 border-t border-gray-200">
+              {data.personalDetails.age && (
+                <span>Age: {data.personalDetails.age}</span>
+              )}
+              {data.personalDetails.gender && (
+                <span>Gender: {data.personalDetails.gender}</span>
+              )}
+              {data.personalDetails.nationality && (
+                <span>Nationality: {data.personalDetails.nationality}</span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

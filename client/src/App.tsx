@@ -6,6 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import ResumeBuilder from "@/pages/resume-builder";
+import About from "@/pages/about";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsOfService from "@/pages/terms-of-service";
+import Blog from "@/pages/blog";
 
 function Router() {
   return (
@@ -14,6 +18,10 @@ function Router() {
       <Route path="/builder" component={ResumeBuilder} />
       <Route path="/resume/:id" component={ResumeBuilder} />
       <Route path="/resume/:id/preview" component={ResumeBuilder} />
+      <Route path="/about" component={About} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/blog" component={Blog} />
       <Route component={NotFound} />
     </Switch>
   );

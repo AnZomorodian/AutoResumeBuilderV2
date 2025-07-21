@@ -63,6 +63,21 @@ export default function ClassicTemplate({ data }: ClassicTemplateProps) {
           {data.personalDetails.location && (
             <div className="text-center">{data.personalDetails.location}</div>
           )}
+          
+          {/* Additional Personal Details */}
+          {(data.personalDetails.age || data.personalDetails.gender || data.personalDetails.nationality) && (
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500 mt-3 pt-3 border-t border-amber-200">
+              {data.personalDetails.age && (
+                <span>Age: {data.personalDetails.age}</span>
+              )}
+              {data.personalDetails.gender && (
+                <span>Gender: {data.personalDetails.gender}</span>
+              )}
+              {data.personalDetails.nationality && (
+                <span>Nationality: {data.personalDetails.nationality}</span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
