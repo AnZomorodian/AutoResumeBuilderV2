@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, Share2, Save } from "lucide-react";
+import { FileText, Download, Share2, Save, ArrowLeft, Home } from "lucide-react";
+import { Link } from "wouter";
 import { FaTelegram, FaDiscord, FaGithub } from "react-icons/fa";
 import TemplateSelector from "@/components/resume-builder/template-selector";
-import PersonalDetailsForm from "@/components/resume-builder/personal-details-form";
+import EnhancedPersonalDetailsForm from "@/components/resume-builder/enhanced-personal-details-form";
 import WorkExperienceForm from "@/components/resume-builder/work-experience-form";
 import EducationForm from "@/components/resume-builder/education-form";
-import SkillsForm from "@/components/resume-builder/skills-form";
-import ProjectsForm from "@/components/resume-builder/projects-form";
+import EnhancedSkillsForm from "@/components/resume-builder/enhanced-skills-form";
+import EnhancedProjectsForm from "@/components/resume-builder/enhanced-projects-form";
 import CertificationsForm from "@/components/resume-builder/certifications-form";
 import ResumePreview from "@/components/resume-builder/resume-preview";
 import Footer from "@/components/ui/footer";
@@ -186,6 +187,12 @@ export default function ResumeBuilder() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
+              <Link href="/">
+                <Button variant="outline" size="sm">
+                  <Home className="h-4 w-4 mr-2" />
+                  Back to Dashboard
+                </Button>
+              </Link>
               <Button
                 onClick={handleManualSave}
                 variant="outline"
@@ -225,7 +232,7 @@ export default function ResumeBuilder() {
               onTemplateChange={setSelectedTemplate}
             />
             
-            <PersonalDetailsForm
+            <EnhancedPersonalDetailsForm
               data={resumeData.personalDetails}
               onChange={(personalDetails) =>
                 setResumeData(prev => ({ ...prev, personalDetails }))
@@ -246,14 +253,14 @@ export default function ResumeBuilder() {
               }
             />
             
-            <SkillsForm
+            <EnhancedSkillsForm
               data={resumeData.skills}
               onChange={(skills) =>
                 setResumeData(prev => ({ ...prev, skills }))
               }
             />
             
-            <ProjectsForm
+            <EnhancedProjectsForm
               data={resumeData.projects}
               onChange={(projects) =>
                 setResumeData(prev => ({ ...prev, projects }))
