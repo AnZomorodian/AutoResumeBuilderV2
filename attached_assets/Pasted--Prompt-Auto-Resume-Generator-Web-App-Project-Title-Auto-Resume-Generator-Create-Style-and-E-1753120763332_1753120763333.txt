@@ -1,0 +1,89 @@
+🎯 Prompt: Auto Resume Generator Web App
+Project Title:
+Auto Resume Generator – Create, Style, and Export Resumes Seamlessly
+
+📌 Objective:
+Design and develop a responsive web application that allows users to input their personal and professional information through structured forms, and automatically generate professional-looking resumes in various styles and formats (PDF and online view).
+
+🧩 Core Features:
+User Input Interface:
+
+Personal Details (Name, Contact, LinkedIn, etc.)
+
+Education Section (Multiple entries)
+
+Work Experience Section (Multiple entries with bullets)
+
+Skills (soft and hard, categorized)
+
+Certifications, Awards, Languages, Projects, etc.
+
+Custom Section (optional)
+
+Resume Template Styles:
+
+Multiple pre-designed resume templates (e.g., Modern, Minimal, Classic, Creative)
+
+Real-time preview of selected template
+
+Template switching without data loss
+
+Customization Options:
+
+Font type and size
+
+Color palette
+
+Section order rearrangement (drag-and-drop)
+
+Hide/show specific sections
+
+Output and Export:
+
+Export to PDF (with proper layout and print formatting)
+
+Shareable online link (read-only public version)
+
+Download HTML/CSS version (for advanced users)
+
+User Account System (optional MVP+):
+
+Sign up/login
+
+Save multiple resumes
+
+Resume version history
+
+📐 Technical Stack (Recommended):
+Frontend: HTML5, CSS3 (Tailwind or SCSS), JavaScript (React or Vue.js)
+
+PDF Generation: jsPDF, html2pdf, or Puppeteer (server-side)
+
+Backend (optional): Node.js with Express (for saving, exporting, authentication)
+
+Database (optional): Firebase, MongoDB, or Supabase
+
+Deployment: Vercel / Netlify / Heroku
+
+💡 Design Goals:
+Clean and intuitive UI
+
+Real-time updates and previews
+
+Accessibility-compliant (WCAG)
+
+Fully responsive on desktop and mobile
+
+UX-first design approach: smooth form experience and easy template switching
+
+📝 Bonus Features (Future Scope):
+AI suggestion for phrasing bullet points
+
+Grammar check and tone optimizer
+
+Resume analysis vs job description
+
+Multilingual support
+
+Cover letter generator
+
