@@ -1,3 +1,5 @@
+import { FaLinkedin, FaGithub, FaTelegram, FaDiscord } from "react-icons/fa";
+import { Globe } from "lucide-react";
 import type { ResumeData } from "@shared/schema";
 
 interface ClassicTemplateProps {
@@ -34,12 +36,27 @@ export default function ClassicTemplate({ data }: ClassicTemplateProps) {
           <div className="flex justify-center space-x-6">
             {data.personalDetails.linkedin && (
               <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
-                {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                LinkedIn
+              </a>
+            )}
+            {data.personalDetails.github && (
+              <a href={data.personalDetails.github} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
+                GitHub
+              </a>
+            )}
+            {data.personalDetails.telegram && (
+              <a href={data.personalDetails.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
+                Telegram
+              </a>
+            )}
+            {data.personalDetails.discord && (
+              <a href={data.personalDetails.discord} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
+                Discord
               </a>
             )}
             {data.personalDetails.website && (
               <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-amber-700 underline">
-                {data.personalDetails.website.replace(/^https?:\/\//, "")}
+                Website
               </a>
             )}
           </div>

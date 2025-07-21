@@ -24,7 +24,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-3">
               <a 
-                href="https://t.me/resumebuilder" 
+                href="https://t.me/ArtinZomorodian" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors"
@@ -32,7 +32,7 @@ export default function Footer() {
                 <FaTelegram className="h-5 w-5" />
               </a>
               <a 
-                href="https://discord.gg/resumebuilder" 
+                href="https://discord.gg/NbTDTRhu" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors"
@@ -40,7 +40,7 @@ export default function Footer() {
                 <FaDiscord className="h-5 w-5" />
               </a>
               <a 
-                href="https://github.com/resumebuilder/app" 
+                href="https://github.com/AnZomorodian" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors"
@@ -87,7 +87,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-200 mt-8 pt-8 text-center">
           <p className="text-slate-500 text-sm">
-            &copy; 2024 ResumeBuilder Pro. All rights reserved. Built with ❤️ for job seekers worldwide.
+            &copy; 2024 ResumeBuilder Pro. All rights reserved. Powered By DeepInk Team
           </p>
         </div>
       </div>

@@ -76,6 +76,36 @@ const templates = [
     lineColors: "bg-teal-400 bg-teal-300 bg-teal-300",
     textColor: "text-teal-700",
   },
+  {
+    id: "professional",
+    name: "Professional",
+    description: "Corporate executive design",
+    color: "blue",
+    gradient: "from-blue-50 to-blue-100",
+    headerColor: "bg-blue-600",
+    lineColors: "bg-blue-500 bg-blue-400 bg-blue-300",
+    textColor: "text-blue-800",
+  },
+  {
+    id: "modern-gradient",
+    name: "Modern Gradient",
+    description: "Colorful modern design",
+    color: "purple",
+    gradient: "from-purple-50 to-pink-50",
+    headerColor: "bg-gradient-to-r from-purple-600 to-pink-600",
+    lineColors: "bg-purple-400 bg-pink-400 bg-indigo-400",
+    textColor: "text-purple-700",
+  },
+  {
+    id: "elegant",
+    name: "Elegant",
+    description: "Sophisticated serif layout",
+    color: "slate",
+    gradient: "from-slate-50 to-slate-100",
+    headerColor: "bg-slate-700",
+    lineColors: "bg-slate-500 bg-slate-400 bg-slate-300",
+    textColor: "text-slate-700",
+  },
 ];
 
 export default function TemplateSelector({ selectedTemplate, onTemplateChange }: TemplateSelectorProps) {

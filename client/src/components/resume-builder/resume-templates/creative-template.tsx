@@ -1,5 +1,5 @@
 import { Mail, Phone, Globe, MapPin, Calendar, Star, Code2, Briefcase } from "lucide-react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTelegram, FaDiscord } from "react-icons/fa";
 import type { ResumeData } from "@shared/schema";
 
 interface CreativeTemplateProps {
@@ -54,6 +54,30 @@ export default function CreativeTemplate({ data }: CreativeTemplateProps) {
                     <FaLinkedin className="h-4 w-4 mr-2" />
                     <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
                       {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                    </a>
+                  </div>
+                )}
+                {data.personalDetails.github && (
+                  <div className="flex items-center">
+                    <FaGithub className="h-4 w-4 mr-2" />
+                    <a href={data.personalDetails.github} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
+                      {data.personalDetails.github.replace(/^https?:\/\//, "")}
+                    </a>
+                  </div>
+                )}
+                {data.personalDetails.telegram && (
+                  <div className="flex items-center">
+                    <FaTelegram className="h-4 w-4 mr-2" />
+                    <a href={data.personalDetails.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
+                      {data.personalDetails.telegram.replace(/^https?:\/\//, "")}
+                    </a>
+                  </div>
+                )}
+                {data.personalDetails.discord && (
+                  <div className="flex items-center">
+                    <FaDiscord className="h-4 w-4 mr-2" />
+                    <a href={data.personalDetails.discord} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-200 underline">
+                      {data.personalDetails.discord.replace(/^https?:\/\//, "")}
                     </a>
                   </div>
                 )}
@@ -176,18 +200,13 @@ export default function CreativeTemplate({ data }: CreativeTemplateProps) {
                         </span>
                       )}
                     </div>
-                    {project.technologies && (
-                      <div className="mb-3">
-                        <div className="flex flex-wrap gap-2">
-                          {(typeof project.technologies === 'string' 
-                            ? project.technologies.split(',')
-                            : project.technologies || []
-                          ).map((tech: string, index: number) => (
-                            <span key={index} className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md text-xs font-medium">
-                              {tech.trim()}
-                            </span>
-                          ))}
-                        </div>
+                    {project.technologies.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {project.technologies.map((tech, index) => (
+                          <span key={index} className="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded">
+                            {tech}
+                          </span>
+                        ))}
                       </div>
                     )}
                     {project.description && (

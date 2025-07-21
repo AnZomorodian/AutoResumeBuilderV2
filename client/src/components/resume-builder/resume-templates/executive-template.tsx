@@ -1,5 +1,5 @@
 import { Mail, Phone, Globe, MapPin, Calendar, Award, Target, TrendingUp, Users } from "lucide-react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTelegram, FaDiscord } from "react-icons/fa";
 import type { ResumeData } from "@shared/schema";
 
 interface ExecutiveTemplateProps {
@@ -50,6 +50,30 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                   <FaLinkedin className="h-4 w-4 mr-2" />
                   <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-purple-200 underline">
                     {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
+              )}
+              {data.personalDetails.github && (
+                <div className="flex items-center">
+                  <FaGithub className="h-4 w-4 mr-2" />
+                  <a href={data.personalDetails.github} target="_blank" rel="noopener noreferrer" className="hover:text-purple-200 underline">
+                    {data.personalDetails.github.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
+              )}
+              {data.personalDetails.telegram && (
+                <div className="flex items-center">
+                  <FaTelegram className="h-4 w-4 mr-2" />
+                  <a href={data.personalDetails.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-purple-200 underline">
+                    {data.personalDetails.telegram.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
+              )}
+              {data.personalDetails.discord && (
+                <div className="flex items-center">
+                  <FaDiscord className="h-4 w-4 mr-2" />
+                  <a href={data.personalDetails.discord} target="_blank" rel="noopener noreferrer" className="hover:text-purple-200 underline">
+                    {data.personalDetails.discord.replace(/^https?:\/\//, "")}
                   </a>
                 </div>
               )}

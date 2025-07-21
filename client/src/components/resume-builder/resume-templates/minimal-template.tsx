@@ -1,3 +1,5 @@
+import { FaLinkedin, FaGithub, FaTelegram, FaDiscord } from "react-icons/fa";
+import { Mail, Phone, Globe, MapPin } from "lucide-react";
 import type { ResumeData } from "@shared/schema";
 
 interface MinimalTemplateProps {
@@ -32,14 +34,35 @@ export default function MinimalTemplate({ data }: MinimalTemplateProps) {
           {data.personalDetails.linkedin && (
             <div>
               <a href={data.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
-                {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+                LinkedIn: {data.personalDetails.linkedin.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
+          )}
+          {data.personalDetails.github && (
+            <div>
+              <a href={data.personalDetails.github} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
+                GitHub: {data.personalDetails.github.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
+          )}
+          {data.personalDetails.telegram && (
+            <div>
+              <a href={data.personalDetails.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
+                Telegram: {data.personalDetails.telegram.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
+          )}
+          {data.personalDetails.discord && (
+            <div>
+              <a href={data.personalDetails.discord} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
+                Discord: {data.personalDetails.discord.replace(/^https?:\/\//, "")}
               </a>
             </div>
           )}
           {data.personalDetails.website && (
             <div>
               <a href={data.personalDetails.website} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 underline">
-                {data.personalDetails.website.replace(/^https?:\/\//, "")}
+                Website: {data.personalDetails.website.replace(/^https?:\/\//, "")}
               </a>
             </div>
           )}
