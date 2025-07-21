@@ -2,9 +2,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { GraduationCap, Plus, Trash2, GripVertical } from "lucide-react";
 import { nanoid } from "nanoid";
 import type { Education } from "@shared/schema";
+import { degreeOptions } from "@shared/schema";
 
 interface EducationFormProps {
   data: Education[];
@@ -15,7 +17,8 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
   const addEducation = () => {
     const newEducation: Education = {
       id: nanoid(),
-      degree: "",
+      degree: "Bachelor's Degree",
+      fieldOfStudy: "",
       institution: "",
       location: "",
       graduationYear: undefined,
@@ -70,10 +73,29 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label className="text-sm font-medium text-slate-700">Degree *</Label>
-                  <Input
+                  <Select 
                     value={education.degree}
-                    onChange={(e) => updateEducation(education.id, 'degree', e.target.value)}
-                    placeholder="Bachelor of Computer Science"
+                    onValueChange={(value) => updateEducation(education.id, 'degree', value)}
+                  >
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {degreeOptions.map((degree) => (
+                        <SelectItem key={degree} value={degree}>
+                          {degree}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-sm font-medium text-slate-700">Field of Study</Label>
+                  <Input
+                    value={education.fieldOfStudy || ''}
+                    onChange={(e) => updateEducation(education.id, 'fieldOfStudy', e.target.value)}
+                    placeholder="Computer Science"
                     className="mt-1"
                   />
                 </div>

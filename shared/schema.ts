@@ -34,8 +34,12 @@ export const personalDetailsSchema = z.object({
   phone: z.string().optional(),
   linkedin: z.string().optional(),
   website: z.string().optional(),
+  github: z.string().optional(),
+  telegram: z.string().optional(),
+  discord: z.string().optional(),
   location: z.string().optional(),
   summary: z.string().optional(),
+  profileImage: z.string().optional(),
 });
 
 export const workExperienceSchema = z.object({
@@ -50,9 +54,22 @@ export const workExperienceSchema = z.object({
   description: z.string().optional(),
 });
 
+export const degreeOptions = [
+  "High School Diploma",
+  "Associate Degree",
+  "Bachelor's Degree",
+  "Master's Degree",
+  "PhD",
+  "Professional Degree",
+  "Certificate",
+  "Diploma",
+  "Other"
+] as const;
+
 export const educationSchema = z.object({
   id: z.string(),
-  degree: z.string().min(1, "Degree is required"),
+  degree: z.enum(degreeOptions),
+  fieldOfStudy: z.string().optional(),
   institution: z.string().min(1, "Institution is required"),
   location: z.string().optional(),
   graduationYear: z.number().optional(),
@@ -73,11 +90,14 @@ export const projectSchema = z.object({
   id: z.string(),
   name: z.string().min(1, "Project name is required"),
   description: z.string().optional(),
-  technologies: z.string().optional(),
+  technologies: z.array(z.string()).default([]),
   url: z.string().optional(),
   github: z.string().optional(),
-  completionDate: z.string().optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  current: z.boolean().default(false),
   highlights: z.array(z.string()).default([]),
+  category: z.string().optional(),
 });
 
 export const certificationSchema = z.object({
@@ -88,6 +108,8 @@ export const certificationSchema = z.object({
   expirationDate: z.string().optional(),
   credentialId: z.string().optional(),
   url: z.string().optional(),
+  skills: z.array(z.string()).default([]),
+  status: z.enum(["Active", "Expired", "In Progress"]).default("Active"),
 });
 
 export const resumeDataSchema = z.object({

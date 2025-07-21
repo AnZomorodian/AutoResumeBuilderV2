@@ -20,10 +20,10 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
   const [newLanguageProficiency, setNewLanguageProficiency] = useState<"Native" | "Fluent" | "Intermediate" | "Basic">("Intermediate");
 
   const addTechnicalSkill = () => {
-    if (newTechnicalSkill.trim()) {
+    if (newTechnicalSkill.trim() && !data.technical.includes(newTechnicalSkill.trim())) {
       onChange({
         ...data,
-        technical: [...data.technical, newTechnicalSkill.trim()],
+        technical: [...(data.technical || []), newTechnicalSkill.trim()],
       });
       setNewTechnicalSkill("");
     }
@@ -32,15 +32,15 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
   const removeTechnicalSkill = (index: number) => {
     onChange({
       ...data,
-      technical: data.technical.filter((_, i) => i !== index),
+      technical: (data.technical || []).filter((_, i) => i !== index),
     });
   };
 
   const addSoftSkill = () => {
-    if (newSoftSkill.trim()) {
+    if (newSoftSkill.trim() && !(data.soft || []).includes(newSoftSkill.trim())) {
       onChange({
         ...data,
-        soft: [...data.soft, newSoftSkill.trim()],
+        soft: [...(data.soft || []), newSoftSkill.trim()],
       });
       setNewSoftSkill("");
     }
@@ -49,15 +49,15 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
   const removeSoftSkill = (index: number) => {
     onChange({
       ...data,
-      soft: data.soft.filter((_, i) => i !== index),
+      soft: (data.soft || []).filter((_, i) => i !== index),
     });
   };
 
   const addLanguage = () => {
-    if (newLanguage.trim()) {
+    if (newLanguage.trim() && !(data.languages || []).some(lang => lang.language === newLanguage.trim())) {
       onChange({
         ...data,
-        languages: [...data.languages, {
+        languages: [...(data.languages || []), {
           language: newLanguage.trim(),
           proficiency: newLanguageProficiency,
         }],
@@ -70,12 +70,19 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
   const removeLanguage = (index: number) => {
     onChange({
       ...data,
-      languages: data.languages.filter((_, i) => i !== index),
+      languages: (data.languages || []).filter((_, i) => i !== index),
     });
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent, action: () => void) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      action();
+    }
+  };
+
   const updateLanguage = (index: number, field: 'language' | 'proficiency', value: string) => {
-    const updatedLanguages = [...data.languages];
+    const updatedLanguages = [...(data.languages || [])];
     if (field === 'proficiency') {
       updatedLanguages[index] = {
         ...updatedLanguages[index],
@@ -93,13 +100,6 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
     });
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent, action: () => void) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      action();
-    }
-  };
-
   return (
     <Card>
       <CardContent className="p-6">
@@ -115,7 +115,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
           <div>
             <Label className="text-sm font-medium text-slate-700 mb-3 block">Technical Skills</Label>
             <div className="flex flex-wrap gap-2 mb-3">
-              {data.technical.map((skill, index) => (
+              {(data.technical || []).map((skill, index) => (
                 <Badge key={index} variant="secondary" className="bg-blue-100 text-blue-800 flex items-center">
                   <span>{skill}</span>
                   <Button
@@ -147,7 +147,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
           <div>
             <Label className="text-sm font-medium text-slate-700 mb-3 block">Soft Skills</Label>
             <div className="flex flex-wrap gap-2 mb-3">
-              {data.soft.map((skill, index) => (
+              {(data.soft || []).map((skill, index) => (
                 <Badge key={index} variant="secondary" className="bg-green-100 text-green-800 flex items-center">
                   <span>{skill}</span>
                   <Button
@@ -179,7 +179,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
           <div>
             <Label className="text-sm font-medium text-slate-700 mb-3 block">Languages</Label>
             <div className="space-y-3 mb-3">
-              {data.languages.map((lang, index) => (
+              {(data.languages || []).map((lang, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <Input
                     value={lang.language}

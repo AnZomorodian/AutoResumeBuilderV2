@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Code, Plus, Trash2, GripVertical } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Code, Plus, Trash2, GripVertical, X, Calendar } from "lucide-react";
 import { nanoid } from "nanoid";
 import type { Project } from "@shared/schema";
 
@@ -13,16 +16,21 @@ interface ProjectsFormProps {
 }
 
 export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
+  const [newTechSkill, setNewTechSkill] = useState<{[key: string]: string}>({});
+  const [newHighlight, setNewHighlight] = useState<{[key: string]: string}>({});
   const addProject = () => {
     const newProject: Project = {
       id: nanoid(),
       name: "",
       description: "",
-      technologies: "",
+      technologies: [],
       url: "",
       github: "",
-      completionDate: "",
+      startDate: "",
+      endDate: "",
+      current: false,
       highlights: [],
+      category: "",
     };
     onChange([...data, newProject]);
   };
@@ -35,6 +43,42 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
     onChange(data.map(project => 
       project.id === id ? { ...project, [field]: value } : project
     ));
+  };
+
+  const addTechnology = (projectId: string) => {
+    const skill = newTechSkill[projectId]?.trim();
+    if (skill) {
+      const project = data.find(p => p.id === projectId);
+      if (project && !project.technologies.includes(skill)) {
+        updateProject(projectId, 'technologies', [...project.technologies, skill]);
+        setNewTechSkill({...newTechSkill, [projectId]: ''});
+      }
+    }
+  };
+
+  const removeTechnology = (projectId: string, index: number) => {
+    const project = data.find(p => p.id === projectId);
+    if (project) {
+      updateProject(projectId, 'technologies', project.technologies.filter((_, i) => i !== index));
+    }
+  };
+
+  const addHighlight = (projectId: string) => {
+    const highlight = newHighlight[projectId]?.trim();
+    if (highlight) {
+      const project = data.find(p => p.id === projectId);
+      if (project && !project.highlights.includes(highlight)) {
+        updateProject(projectId, 'highlights', [...project.highlights, highlight]);
+        setNewHighlight({...newHighlight, [projectId]: ''});
+      }
+    }
+  };
+
+  const removeHighlight = (projectId: string, index: number) => {
+    const project = data.find(p => p.id === projectId);
+    if (project) {
+      updateProject(projectId, 'highlights', project.highlights.filter((_, i) => i !== index));
+    }
   };
 
   return (
@@ -81,11 +125,11 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
                 </div>
                 
                 <div>
-                  <Label className="text-sm font-medium text-slate-700">Technologies Used</Label>
+                  <Label className="text-sm font-medium text-slate-700">Category</Label>
                   <Input
-                    value={project.technologies || ''}
-                    onChange={(e) => updateProject(project.id, 'technologies', e.target.value)}
-                    placeholder="React, Node.js, MongoDB"
+                    value={project.category || ''}
+                    onChange={(e) => updateProject(project.id, 'category', e.target.value)}
+                    placeholder="Web Development, Mobile App, etc."
                     className="mt-1"
                   />
                 </div>
@@ -113,10 +157,32 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
                 </div>
 
                 <div>
-                  <Label className="text-sm font-medium text-slate-700">Completion Date</Label>
+                  <Label className="text-sm font-medium text-slate-700">Start Date</Label>
                   <Input
                     type="month"
-                    value={project.completionDate || ''}
+                    value={project.startDate || ''}
+                    onChange={(e) => updateProject(project.id, 'startDate', e.target.value)}
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-sm font-medium text-slate-700">End Date</Label>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`current-${project.id}`}
+                        checked={project.current}
+                        onCheckedChange={(checked) => updateProject(project.id, 'current', checked)}
+                      />
+                      <Label htmlFor={`current-${project.id}`} className="text-sm">
+                        Currently working on this
+                      </Label>
+                    </div>
+                    {!project.current && (
+                      <Input
+                        type="month"
+                        value={project.endDate || ''}
                     onChange={(e) => updateProject(project.id, 'completionDate', e.target.value)}
                     className="mt-1"
                   />
