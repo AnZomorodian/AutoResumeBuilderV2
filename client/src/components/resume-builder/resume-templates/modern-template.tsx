@@ -22,6 +22,15 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
     <div className="p-8 text-gray-900">
       {/* Header Section */}
       <div className="text-center pb-6 border-b-2 border-primary">
+        {data.personalDetails.profileImage && (
+          <div className="mb-6">
+            <img
+              src={data.personalDetails.profileImage}
+              alt="Profile"
+              className="w-32 h-32 rounded-full object-cover border-4 border-primary mx-auto shadow-lg"
+            />
+          </div>
+        )}
         <h1 className="text-3xl font-bold text-secondary mb-2">
           {data.personalDetails.fullName || "Your Name"}
         </h1>

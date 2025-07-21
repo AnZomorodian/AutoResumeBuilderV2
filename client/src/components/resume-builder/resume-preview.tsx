@@ -9,6 +9,8 @@ import MinimalTemplate from "./resume-templates/minimal-template";
 import ClassicTemplate from "./resume-templates/classic-template";
 import CreativeTemplate from "./resume-templates/creative-template";
 import ExecutiveTemplate from "./resume-templates/executive-template";
+import TechTemplate from "./resume-templates/tech-template";
+import AcademicTemplate from "./resume-templates/academic-template";
 import type { ResumeData } from "@shared/schema";
 
 interface ResumePreviewProps {
@@ -47,6 +49,10 @@ export default function ResumePreview({ data, template, lastSaved, autoSaveEnabl
         return <CreativeTemplate data={data} />;
       case "executive":
         return <ExecutiveTemplate data={data} />;
+      case "tech":
+        return <TechTemplate data={data} />;
+      case "academic":
+        return <AcademicTemplate data={data} />;
       default:
         return <ModernTemplate data={data} />;
     }

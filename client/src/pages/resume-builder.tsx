@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "wouter";
+import { useParams, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, Share2, Save } from "lucide-react";
 import { FaTelegram, FaDiscord, FaGithub } from "react-icons/fa";

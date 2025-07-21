@@ -4,13 +4,16 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import Dashboard from "@/pages/dashboard";
 import ResumeBuilder from "@/pages/resume-builder";
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={ResumeBuilder} />
+      <Route path="/" component={Dashboard} />
+      <Route path="/builder" component={ResumeBuilder} />
       <Route path="/resume/:id" component={ResumeBuilder} />
+      <Route path="/resume/:id/preview" component={ResumeBuilder} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -56,6 +56,26 @@ const templates = [
     lineColors: "bg-purple-400 bg-purple-300 bg-purple-300",
     textColor: "text-purple-700",
   },
+  {
+    id: "tech",
+    name: "Tech Pro",
+    description: "Dark theme for developers",
+    color: "indigo",
+    gradient: "from-indigo-50 to-indigo-100",
+    headerColor: "bg-indigo-500",
+    lineColors: "bg-indigo-400 bg-indigo-300 bg-indigo-300",
+    textColor: "text-indigo-700",
+  },
+  {
+    id: "academic",
+    name: "Academic",
+    description: "Professional academic format",
+    color: "teal",
+    gradient: "from-teal-50 to-teal-100",
+    headerColor: "bg-teal-500",
+    lineColors: "bg-teal-400 bg-teal-300 bg-teal-300",
+    textColor: "text-teal-700",
+  },
 ];
 
 export default function TemplateSelector({ selectedTemplate, onTemplateChange }: TemplateSelectorProps) {
